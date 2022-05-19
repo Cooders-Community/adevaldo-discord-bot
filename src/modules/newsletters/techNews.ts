@@ -45,7 +45,7 @@ export default async () => {
 
       if (news?.content) {
         channels.send(
-          `*** Noticias - ${format(
+          `*** ${moduleConfig.title} - ${format(
             new Date(news.timestamp),
             "dd 'de' MMMM 'de' yyyy"
           )} ***`

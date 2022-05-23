@@ -22,12 +22,11 @@ export default async () => {
           const { default: moduleInit } = await import(`./${file}`);
           cron
             .schedule(configModule.cronSchedule, moduleInit, {
+              recoverMissedExecutions: true,
               scheduled: true,
-              timezone: "America/Sao_Paulo",
+              timezone: "America/Sao_Paulo"
             })
-            .on("connection", () =>
-              console.log("[#LOG]", `Cron Connected in ${moduleName} module`)
-            );
+          console.log("[#LOG]", `Cron Connected in ${moduleName} module, at ${configModule.cronSchedule}`)
         } catch (error) {
           console.error("[#ERROR]", error);
         }

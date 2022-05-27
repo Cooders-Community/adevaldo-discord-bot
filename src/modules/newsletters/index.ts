@@ -26,6 +26,9 @@ export default async () => {
               scheduled: true,
               timezone: "America/Sao_Paulo"
             })
+            .on("connection", () =>
+            console.warn("[#WARN]", `seddings ${moduleName} module`)
+          );
           console.log("[#LOG]", `Cron Connected in ${moduleName} module, at ${configModule.cronSchedule}`)
         } catch (error) {
           console.error("[#ERROR]", error);
@@ -34,5 +37,5 @@ export default async () => {
     })
   ).then(() =>
     console.log("[#LOG]", `Carregando o total de ${evtFiles.length} modulos.`)
-  );
+  ).catch((err)=> console.error("[#ERRO]", `${err}`))
 };

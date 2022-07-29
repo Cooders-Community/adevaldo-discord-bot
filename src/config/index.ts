@@ -1,9 +1,9 @@
 import * as dotenv from "dotenv";
-import masterRolesConfig from "../constants/masterRoles.json";
-import newsLetterConfig from "../constants/newsLetter.json";
-import skillsRolesConfig from "../constants/skillsRoles.json";
-import { INewsLetterList } from "./../models/newsLetters";
-import { IMasterRolesList, ISkillsRolesList } from "./../models/roles";
+import * as masterRolesConfig from "src/constants/masterRoles.json";
+import * as newsLetterConfig from "src/constants/newsLetter.json";
+import * as skillsRolesConfig from "src/constants/skillsRoles.json";
+import { INewsLetterList } from "src/models/newsLetters";
+import { IMasterRolesList, ISkillsRolesList } from "src/models/roles";
 
 dotenv.config();
 

@@ -40,7 +40,7 @@ export const requesNews = async (): Promise<IFeed | undefined> => {
 export default async () => {
   try {
     const channels = await client.channels.fetch(moduleConfig.channelId);
-    if (channels?.isText()) {
+    if (channels?.isTextBased()) {
       const news = await requesNews();
 
       if (news?.content) {

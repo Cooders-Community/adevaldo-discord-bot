@@ -13,6 +13,7 @@ export default async () => {
 
       if (configModule) {
         const valid = cron.validate(configModule.cronSchedule);
+
         if (!valid)
           throw new Error(
             `Invalid CronExpression ${configModule.cronSchedule} to ${moduleName}`
@@ -24,18 +25,23 @@ export default async () => {
             .schedule(configModule.cronSchedule, moduleInit, {
               recoverMissedExecutions: true,
               scheduled: true,
-              timezone: "America/Sao_Paulo"
+              timezone: "America/Sao_Paulo",
             })
             .on("connection", () =>
-            console.warn("[#WARN]", `seddings ${moduleName} module`)
+              console.warn("[#WARN]", `seddings ${moduleName} module`)
+            );
+          console.log(
+            "[#LOG]",
+            `Cron Connected in ${moduleName} module, at ${configModule.cronSchedule}`
           );
-          console.log("[#LOG]", `Cron Connected in ${moduleName} module, at ${configModule.cronSchedule}`)
         } catch (error) {
           console.error("[#ERROR]", error);
         }
       }
     })
-  ).then(() =>
-    console.log("[#LOG]", `Carregando o total de ${evtFiles.length} modulos.`)
-  ).catch((err)=> console.error("[#ERRO]", `${err}`))
+  )
+    .then(() =>
+      console.log("[#LOG]", `Carregando o total de ${evtFiles.length} modulos.`)
+    )
+    .catch((err) => console.error("[#ERRO]", `${err}`));
 };

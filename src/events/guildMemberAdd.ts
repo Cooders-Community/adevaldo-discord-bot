@@ -1,5 +1,6 @@
 import { GuildMember } from "discord.js";
-import config from "../config";
+import config from "src/config";
+
 export default async (member: GuildMember) => {
   if (member.user.bot && config?.masterRolesList?.["bot"]?.id)
     member.roles.add(config?.masterRolesList?.["bot"]?.id);

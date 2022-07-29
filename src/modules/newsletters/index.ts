@@ -9,6 +9,8 @@ export default async () => {
     evtFiles.map(async (file) => {
       try {
         const moduleName: string = file.split(".")[0];
+        if (moduleName === "index") return;
+
         const { default: moduleInit, moduleConfig } = await import(`./${file}`);
 
         if (!moduleConfig)

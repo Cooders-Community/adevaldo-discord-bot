@@ -4,27 +4,31 @@
   "main": "./dist/server/index.js",
   "license": "MIT",
   "scripts": {
-    "build": "tsc && cp .env ./dist/.env",
-    "start": "node ./dist/index.js",
-    "dev": "ts-node-dev --ignore-watch node_modules --respawn --transpile-only './src/index.ts'",
-    "debugger": "ts-node-dev --inspect=0.0.0.0:9229 --notify --poll --respawn --transpile-only './src/index.ts'"
+    "build": "tsc && tsc-alias  && npm run posbuild",
+    "posbuild": "cp package.json ./dist/package.json && cp .env ./dist/.env",
+    "start": "cd ./dist && npm install && node index.js",
+    "dev": "ts-node-dev -r tsconfig-paths/register --ignore-watch node_modules --respawn --transpile-only './src/index.ts'",
+    "dev:debug": "ts-node-dev -r tsconfig-paths/register --inspect=0.0.0.0:9230 --notify --poll --respawn --transpile-only './src/index.ts'"
   },
   "dependencies": {
     "axios": "^0.26.1",
     "date-fns": "^2.28.0",
-    "discord.js": "^13.6.0",
+    "discord.js": "^14.1.1",
     "dotenv": "^16.0.0",
     "html-to-text": "^8.2.0",
     "imap": "^0.8.19",
     "mailparser": "^3.4.0",
     "node-cron": "^3.0.0",
     "remove-accents": "^0.4.2",
-    "rss-parser": "^3.12.0"
+    "rss-parser": "^3.12.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/html-to-text": "^8.1.0",
     "@types/node-cron": "^3.0.1",
+    "@types/uuid": "^8.3.4",
     "ts-node-dev": "^1.1.8",
+    "tsconfig-paths": "^4.0.0",
     "typescript": "^4.6.3"
   }
 }

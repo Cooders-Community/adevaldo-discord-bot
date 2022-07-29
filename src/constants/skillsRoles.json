@@ -1,0 +1,88 @@
+{
+  "Seniority": [
+    {
+      "type": "member",
+      "tag": "Senior",
+      "emoji": "0️⃣",
+      "id": "962066426682818560"
+    },
+    {
+      "type": "member",
+      "tag": "Pleno",
+      "emoji": "1️⃣",
+      "id": "962067406325428304"
+    },
+    {
+      "type": "member",
+      "tag": "Junior",
+      "emoji": "2️⃣",
+      "id": "962065484923142224"
+    },
+    {
+      "type": "member",
+      "tag": "Trainee",
+      "emoji": "3️⃣",
+      "id": "962070577508659250"
+    }
+  ],
+  "Languages": [
+    {
+      "type": "member",
+      "tag": "C,C++,C#",
+      "emoji": "0️⃣",
+      "id": "963992327309901865"
+    },
+    {
+      "type": "member",
+      "tag": "Python",
+      "emoji": "1️⃣",
+      "id": "962074488894292008"
+    },
+    {
+      "type": "member",
+      "tag": "Java",
+      "emoji": "2️⃣",
+      "id": "964645289963163719"
+    },
+    {
+      "type": "member",
+      "tag": "JavaScript",
+      "emoji": "3️⃣",
+      "id": "962058110384619540"
+    }
+  ],
+  "Especiality": [
+    {
+      "type": "member",
+      "tag": "DataScience",
+      "emoji": "0️⃣",
+      "id": "962074749532524604"
+    },
+    {
+      "type": "member",
+      "tag": "Front-END",
+      "emoji": "1️⃣",
+      "id": "962087008619073566"
+    },
+    {
+      "type": "member",
+      "tag": "Back-END",
+      "emoji": "2️⃣",
+      "id": "962087458571432026"
+    }
+  ],
+  "Frameworks": [
+    {
+      "type": "member",
+      "tag": "NodeJS",
+      "emoji": "0️⃣",
+      "id": "963256030551216138"
+    },
+    {
+      "type": "member",
+      "tag": "ReactJS",
+      "emoji": "1️⃣",
+      "id": "962059474464555018"
+    }
+  ]
+}

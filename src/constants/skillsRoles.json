@@ -1,5 +1,5 @@
 {
-  "seniority": [
+  "Seniority": [
     {
       "type": "member",
       "tag": "Senior",
@@ -25,7 +25,7 @@
       "id": "962070577508659250"
     }
   ],
-  "languages": [
+  "Languages": [
     {
       "type": "member",
       "tag": "C,C++,C#",
@@ -51,7 +51,7 @@
       "id": "962058110384619540"
     }
   ],
-  "especiality": [
+  "Especiality": [
     {
       "type": "member",
       "tag": "DataScience",
@@ -71,7 +71,7 @@
       "id": "962087458571432026"
     }
   ],
-  "frameworks": [
+  "Frameworks": [
     {
       "type": "member",
       "tag": "NodeJS",

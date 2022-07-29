@@ -13,12 +13,14 @@ export const bot = {
 
 export let messagesId: string[] = [];
 
-const masterRolesList: IMasterRolesList = masterRolesConfig;
-const skillsRoles: ISkillsRolesList = skillsRolesConfig;
+export const masterRolesList: IMasterRolesList = masterRolesConfig;
+export const skillsRoles: ISkillsRolesList = skillsRolesConfig;
+export const prefix = process.env?.PREFIX_COMMAND || "!";
 
 export default {
   bot,
   messagesId,
   masterRolesList,
+  prefix,
   skillsRoles,
 };

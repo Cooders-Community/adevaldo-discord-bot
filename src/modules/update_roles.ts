@@ -19,6 +19,7 @@ export default async (messageReaction: MessageReaction, user: User) => {
     const asMember = await guild?.members.fetch(user.id);
 
     const currentRole = await guild?.roles.fetch(role.id, { force: true });
+
     const hasRole = currentRole?.members.filter((member) =>
       member.user.id.includes(user.id)
     )?.size;

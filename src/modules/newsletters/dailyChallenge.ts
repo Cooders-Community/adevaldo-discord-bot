@@ -1,12 +1,15 @@
 import { format } from "date-fns";
 import { convert } from "html-to-text";
-import path from "path";
 import { client } from "src";
-import config from "src/config";
 import newsLetterKiller, { IFeed } from "src/utils/newsLetterKiller";
 
-var moduleName = path.basename(__filename).split(".")[0];
-const moduleConfig = config.newsLetterList[moduleName];
+export const moduleConfig = {
+  channelId: "966732065565442068",
+  urlMailBox: "https://kill-the-newsletter.com/feeds/1h7t9db17vnyz8zd.xml",
+  cronSchedule: "0 0 13 * * *",
+  title: "Daily Challenge",
+  source: "https://filipedeschamps.com.br/newsletter",
+};
 
 const formatBody = function (body: string) {
   const toConvert = body
@@ -61,7 +64,7 @@ export default async () => {
 
         //TODO: Translate Challenge to PT
         channels.send(`>>> PT Em Breve =)`);
-        console.warn("[#LOG]", `Sended newsLetter ${moduleName}}`);
+        console.warn("[#LOG]", `Sended newsLetter ${moduleConfig.title}}`);
       } else {
         console.warn("[#LOG]", `Not found news!`);
       }

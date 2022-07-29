@@ -4,10 +4,11 @@
   "main": "./dist/server/index.js",
   "license": "MIT",
   "scripts": {
-    "build": "tsc && cp .env ./dist/.env",
-    "start": "node ./dist/index.js",
-    "dev": "ts-node-dev --ignore-watch node_modules --respawn --transpile-only './src/index.ts'",
-    "debugger": "ts-node-dev --inspect=0.0.0.0:9229 --notify --poll --respawn --transpile-only './src/index.ts'"
+    "build": "tsc && tsc-alias  && npm run posbuild",
+    "posbuild": "cp package.json ./dist/package.json && cp .env ./dist/.env",
+    "start": "cd ./dist && npm install && node index.js",
+    "dev": "ts-node-dev -r tsconfig-paths/register --ignore-watch node_modules --respawn --transpile-only './src/index.ts'",
+    "debugger": "ts-node-dev -r tsconfig-paths/register --inspect=0.0.0.0:9229 --notify --poll --respawn --transpile-only './src/index.ts'"
   },
   "dependencies": {
     "axios": "^0.26.1",
@@ -25,6 +26,7 @@
     "@types/html-to-text": "^8.1.0",
     "@types/node-cron": "^3.0.1",
     "ts-node-dev": "^1.1.8",
+    "tsconfig-paths": "^4.0.0",
     "typescript": "^4.6.3"
   }
 }

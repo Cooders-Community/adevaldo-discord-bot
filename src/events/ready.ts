@@ -1,9 +1,8 @@
 import { ClientEvents } from "discord.js";
-import newsLetters from "../modules/newsletters";
-import welcome_message from "../modules/welcome_message";
+import newsLetters from "src/modules/newsletters";
+import sendRolesSkilsMsg from "src/modules/send-roles-skils-msg";
 
 export default async (events: ClientEvents) => {
-  console.warn("[#LOG]", `Bot is aready!`);
   newsLetters();
-  welcome_message();
+  sendRolesSkilsMsg();
 };

@@ -1,72 +1,97 @@
 import { format } from "date-fns";
+import { EmbedBuilder } from "discord.js";
 import { convert } from "html-to-text";
-import path from "path";
-import config from "../../config";
-import { client } from "../../index";
-import newsLetterKiller, { IFeed } from "../../utils/newsLetterKiller";
+import { client } from "src";
+import newsLetterKiller, { IFeed } from "src/utils/newsLetterKiller";
 
-var moduleName = path.basename(__filename).split(".")[0];
-const moduleConfig = config.newsLetterList[moduleName];
+export const moduleConfig = {
+  channelId: "966732065565442068",
+  urlMailBox: "https://kill-the-newsletter.com/feeds/1h7t9db17vnyz8zd.xml",
+  cronSchedule: "0 0 13 * * *",
+  title: "Daily Challenge",
+  source: "https://www.dailycodingproblem.com/",
+};
 
 const formatBody = function (body: string) {
-    debugger;
-    const toConvert = body
-        .replaceAll(/(<s|<\/s)(.*?)(>)/g, "**")
-        .replaceAll(/(<p|<\/p)(.*?)(>)/g, "#");
-    console.log(toConvert)
-    const str = convert(toConvert, {
-        wordwrap: false,
-    })
-        .replace(/\n/g, " ")
-        .replace(/\s*:*\s*Link\s(patrocinado|afiliado)/gi, ".")
-        .replace(/\[.*?\]/g, "")
-        .replace(
-            /\b((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))/g,
-            ""
-        )
-        .replace(/\s\s+/g, " ")
-        .trim()
-        .split("#");
+  const toConvert = body
+    .replaceAll(/(<s|<\/s)(.*?)(>)/g, "")
+    .replaceAll(/(<p|<\/p)(.*?)(>)/g, "#");
 
-    return str;
+  const str = convert(toConvert, {
+    // wordwrap: false,
+  })
+    .replace(/\n/g, " ")
+    .replace(/\[.*?\]/g, "")
+    .replace(
+      /\b((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))/g,
+      ""
+    )
+    .replace(/\s\s+/g, " ")
+    .trim()
+    .split("#");
+
+  return str;
 };
 
-export const requesNews = async (): Promise<IFeed | undefined> => {
-    const mailsArr = await newsLetterKiller.fetch(moduleConfig.urlMailBox);
-    return mailsArr.find((news) => news.isToday);
-};
+export const requesNews = async (): Promise<IFeed | undefined> =>
+  await newsLetterKiller
+    .fetch(moduleConfig.urlMailBox)
+    .then((res) => res.find((news) => news.isToday));
 
 export default async () => {
-    try {
-        const channels = await client.channels.fetch(moduleConfig.channelId);
-        if (channels?.isText()) {
-            const news = await requesNews();
+  try {
+    const channels = await client.channels.fetch(moduleConfig.channelId);
 
-            if (news?.content) {
-                channels.send(
-                    `*** ${moduleConfig.title} - ${format(
-                        new Date(news.timestamp),
-                        "dd 'de' MMMM 'de' yyyy"
-                    )} ***`
-                );
+    if (channels?.isTextBased()) {
+      const news = await requesNews();
 
-                const str = formatBody(news?.content);
+      if (news?.content) {
+        const currentDate = format(
+          new Date(news?.timestamp),
+          "dd 'de' MMMM 'de' yyyy"
+        );
 
-                //NOTE: Limiting Text to Challenge
-                const index = str.findIndex((value) => value.includes(' -'))
-                str.findIndex((value) => value.includes(' -'))
-                const msg = '```' + str.slice(1, index).join('\n') + '```'
+        const str = formatBody(news?.content);
 
-                channels.send(`>>> EN \n${msg}`);
+        //NOTE: Limiting Text to Challenge
+        const index = str.findIndex((value) => value.includes(" -"));
+        str.findIndex((value) => value.includes(" -"));
+        const msg = "```" + str.slice(1, index).join("\n") + "```";
 
-                //TODO: Translate Challenge to PT
-                channels.send(`>>> PT Em Breve =)`);
-                console.warn("[#LOG]", `Sended newsLetter ${moduleName}}`);
-            } else {
-                console.warn("[#LOG]", `Not found news!`);
-            }
+        const embedMessage = new EmbedBuilder()
+          .setColor("#2BB280")
+          .setTitle(news.title || moduleConfig.title)
+          .setDescription(msg);
+
+        const components: any[] = [];
+
+        if (moduleConfig.source) {
+          //NOTE: Button Component
+          components.push({
+            type: 1,
+            components: [
+              {
+                style: 5,
+                label: `Fonte`,
+                url: `${moduleConfig.source}`,
+                disabled: false,
+                type: 2,
+              },
+            ],
+          });
         }
-    } catch (error) {
-        console.warn("[#ERROR]", error);
+
+        await channels.send({
+          embeds: [embedMessage],
+          components,
+        });
+
+        console.warn("[#LOG]", `Sended newsLetter ${moduleConfig.title}}`);
+      } else {
+        console.warn("[#LOG]", `Not found news!`);
+      }
     }
+  } catch (error) {
+    console.warn("[#ERROR]", error);
+  }
 };

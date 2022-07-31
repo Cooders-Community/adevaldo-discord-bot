@@ -1,4 +1,4 @@
-import { MessageEmbed } from "discord.js";
+import { EmbedBuilder } from "discord.js";
 import { client } from "src";
 import config from "src/config";
 
@@ -10,7 +10,7 @@ export const moduleConfig = {
 export default async () => {
   const channel = await client.channels.fetch(moduleConfig.channelId);
 
-  if (channel?.isText()) {
+  if (channel?.isTextBased()) {
     const totalMessages = await channel.messages.fetch({ limit: 100 });
     totalMessages.size > 0 &&
       totalMessages.forEach((message) => {
@@ -23,7 +23,7 @@ export default async () => {
 
         if (!category.length) return;
 
-        const embedMessage = new MessageEmbed()
+        const embedMessage = new EmbedBuilder()
           .setColor("#0090F7")
           .setTitle(skillsRole);
 

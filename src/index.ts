@@ -1,10 +1,24 @@
-import Discord, { Collection } from "discord.js";
+import Discord, { Collection, GatewayIntentBits, Partials } from "discord.js";
 import fs from "fs";
 import path from "path";
 import config from "./config";
 import { ICommand } from "./models/commands";
 
-export const client = new Discord.Client({ intents: 32767 });
+export const client = new Discord.Client({
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMembers,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.GuildMessageReactions,
+  ],
+  partials: [
+    Partials.Channel,
+    Partials.Message,
+    Partials.Reaction,
+    Partials.User,
+  ],
+});
 export const commands = new Collection<string, ICommand>();
 
 const loadCommands = async () => {
@@ -18,6 +32,7 @@ const loadCommands = async () => {
       if (module.init) {
         module.init(client);
       }
+
       module.command.name && commands.set(module.command.name, module);
     })
   ).then(() =>

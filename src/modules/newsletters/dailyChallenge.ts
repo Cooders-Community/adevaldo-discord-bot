@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import { MessageEmbed } from "discord.js";
+import { EmbedBuilder } from "discord.js";
 import { convert } from "html-to-text";
 import { client } from "src";
 import newsLetterKiller, { IFeed } from "src/utils/newsLetterKiller";
@@ -7,7 +7,7 @@ import newsLetterKiller, { IFeed } from "src/utils/newsLetterKiller";
 export const moduleConfig = {
   channelId: "966732065565442068",
   urlMailBox: "https://kill-the-newsletter.com/feeds/1h7t9db17vnyz8zd.xml",
-  cronSchedule: "0 0 13 * * *",
+  cronSchedule: "0 0 12 * * *",
   title: "Daily Challenge",
   source: "https://www.dailycodingproblem.com/",
 };
@@ -42,7 +42,7 @@ export default async () => {
   try {
     const channels = await client.channels.fetch(moduleConfig.channelId);
 
-    if (channels?.isText()) {
+    if (channels?.isTextBased()) {
       const news = await requesNews();
 
       if (news?.content) {
@@ -58,7 +58,7 @@ export default async () => {
         str.findIndex((value) => value.includes(" -"));
         const msg = "```" + str.slice(1, index).join("\n") + "```";
 
-        const embedMessage = new MessageEmbed()
+        const embedMessage = new EmbedBuilder()
           .setColor("#2BB280")
           .setTitle(news.title || moduleConfig.title)
           .setDescription(msg);

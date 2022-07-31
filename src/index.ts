@@ -11,12 +11,14 @@ export const client = new Discord.Client({
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.MessageContent,
     GatewayIntentBits.GuildMessageReactions,
+    GatewayIntentBits.DirectMessageReactions,
   ],
   partials: [
     Partials.Channel,
     Partials.Message,
     Partials.Reaction,
     Partials.User,
+    Partials.ThreadMember,
   ],
 });
 export const commands = new Collection<string, ICommand>();

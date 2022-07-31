@@ -2,7 +2,7 @@ import { MessageReaction, User } from "discord.js";
 import config from "src/config";
 
 export default async (messageReaction: MessageReaction, user: User) => {
-  if (!messageReaction && !user) return;
+  if ((!messageReaction && !user) || user.bot) return;
 
   const topic = messageReaction.message.content?.match(
     /(\*\*\*)(.*?)(\*\*\*)/g

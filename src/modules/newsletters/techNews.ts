@@ -1,4 +1,4 @@
-import { EmbedBuilder } from "discord.js";
+import { MessageEmbed } from "discord.js";
 import { convert } from "html-to-text";
 import { client } from "src/index";
 import newsLetterKiller, { IFeed } from "src/utils/newsLetterKiller";
@@ -44,11 +44,11 @@ export default async () => {
   try {
     const channels = await client.channels.fetch(moduleConfig.channelId);
 
-    if (channels?.isTextBased()) {
+    if (channels?.isText()) {
       const news = await requesNews();
 
       if (news?.content) {
-        const embedMessage = new EmbedBuilder()
+        const embedMessage = new MessageEmbed()
           .setColor("#edd968")
           .setTitle(news.title || moduleConfig.title);
 

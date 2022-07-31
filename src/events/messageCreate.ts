@@ -12,10 +12,6 @@ export default async (message: Message) => {
       return;
     }
 
-    console.log(config.prefix);
-    console.log(
-      message.content.toLocaleLowerCase().startsWith(`${config.prefix}`)
-    );
     if (!message.content.toLocaleLowerCase().startsWith(`${config.prefix}`))
       return;
 

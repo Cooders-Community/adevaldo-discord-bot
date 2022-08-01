@@ -4,7 +4,6 @@ import config from "src/config";
 
 export default async (message: Message) => {
   try {
-    debugger;
     if (message.author.bot) {
       if (message.content.startsWith(`${config.prefix}`)) {
         throw new Error("A bot attembled to run a command.");
@@ -12,10 +11,6 @@ export default async (message: Message) => {
       return;
     }
 
-    console.log(config.prefix);
-    console.log(
-      message.content.toLocaleLowerCase().startsWith(`${config.prefix}`)
-    );
     if (!message.content.toLocaleLowerCase().startsWith(`${config.prefix}`))
       return;
 
@@ -31,15 +26,13 @@ export default async (message: Message) => {
     const command = commands.get(`${args}`);
 
     if (!command) {
-      await message.reply("Command not found.").then((msg) =>
-        setTimeout(() => {
-          message.delete();
-          msg.delete();
-        }, 5000)
-      );
-      throw new Error("Command not found.");
+      await message
+        .reply("Command not found.")
+        .then((msg) =>
+          setTimeout(() => msg.delete().then(message.delete), 5000)
+        );
     }
-    debugger;
+
     command
       ?.run(message, content[1])
       .then(command?.success?.(message))

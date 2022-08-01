@@ -1,10 +1,39 @@
-import Discord, { Collection } from "discord.js";
+import Discord, { Collection, GatewayIntentBits, Partials } from "discord.js";
 import fs from "fs";
 import path from "path";
 import config from "./config";
 import { ICommand } from "./models/commands";
 
-export const client = new Discord.Client({ intents: 32767 });
+export const client = new Discord.Client({
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMembers,
+    GatewayIntentBits.GuildBans,
+    GatewayIntentBits.GuildEmojisAndStickers,
+    GatewayIntentBits.GuildIntegrations,
+    GatewayIntentBits.GuildWebhooks,
+    GatewayIntentBits.GuildInvites,
+    GatewayIntentBits.GuildVoiceStates,
+    GatewayIntentBits.GuildPresences,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.GuildMessageReactions,
+    GatewayIntentBits.GuildMessageTyping,
+    GatewayIntentBits.DirectMessages,
+    GatewayIntentBits.DirectMessageReactions,
+    GatewayIntentBits.DirectMessageTyping,
+    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.GuildScheduledEvents,
+  ],
+  partials: [
+    Partials.User,
+    Partials.Channel,
+    Partials.GuildMember,
+    Partials.Message,
+    Partials.Reaction,
+    Partials.GuildScheduledEvent,
+    Partials.ThreadMember,
+  ],
+});
 export const commands = new Collection<string, ICommand>();
 
 const loadCommands = async () => {
@@ -18,6 +47,7 @@ const loadCommands = async () => {
       if (module.init) {
         module.init(client);
       }
+
       module.command.name && commands.set(module.command.name, module);
     })
   ).then(() =>

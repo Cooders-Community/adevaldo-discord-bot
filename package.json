@@ -11,24 +11,24 @@
     "dev:debug": "ts-node-dev -r tsconfig-paths/register --inspect=0.0.0.0:9230 --notify --poll --respawn --transpile-only './src/index.ts'"
   },
   "dependencies": {
-    "axios": "^0.26.1",
-    "date-fns": "^2.28.0",
-    "discord.js": "^14.1.1",
-    "dotenv": "^16.0.0",
-    "html-to-text": "^8.2.0",
+    "axios": "^0.27.2",
+    "date-fns": "^2.29.1",
+    "discord.js": "^14.1.2",
+    "dotenv": "^16.0.1",
+    "html-to-text": "^8.2.1",
     "imap": "^0.8.19",
-    "mailparser": "^3.4.0",
-    "node-cron": "^3.0.0",
+    "mailparser": "^3.5.0",
+    "node-cron": "^3.0.1",
     "remove-accents": "^0.4.2",
     "rss-parser": "^3.12.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/html-to-text": "^8.1.0",
-    "@types/node-cron": "^3.0.1",
+    "@types/node-cron": "^3.0.2",
     "@types/uuid": "^8.3.4",
-    "ts-node-dev": "^1.1.8",
+    "ts-node-dev": "^2.0.0",
     "tsconfig-paths": "^4.0.0",
-    "typescript": "^4.6.3"
+    "typescript": "^4.7.4"
   }
 }

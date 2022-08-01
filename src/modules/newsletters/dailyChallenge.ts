@@ -7,7 +7,7 @@ import newsLetterKiller, { IFeed } from "src/utils/newsLetterKiller";
 export const moduleConfig = {
   channelId: "966732065565442068",
   urlMailBox: "https://kill-the-newsletter.com/feeds/1h7t9db17vnyz8zd.xml",
-  cronSchedule: "0 0 13 * * *",
+  cronSchedule: "0 0 12 * * *",
   title: "Daily Challenge",
   source: "https://www.dailycodingproblem.com/",
 };

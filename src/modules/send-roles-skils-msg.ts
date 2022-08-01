@@ -13,10 +13,6 @@ export default async () => {
   if (channel?.isTextBased()) {
     const totalMessages = await channel.messages.fetch({ limit: 100 });
     if (totalMessages.size) return;
-    // totalMessages.size > 0 &&
-    //   totalMessages.forEach((message) => {
-    //     message.delete();
-    //   });
 
     const messages = Object.keys(config.skillsRoles).map(
       async (skillsRole: string) => {

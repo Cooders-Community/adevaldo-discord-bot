@@ -1,8 +1,15 @@
 import { MessageReaction, User } from "discord.js";
 import config from "src/config";
 
+import { moduleConfig } from "./send-roles-skils-msg";
+
 export default async (messageReaction: MessageReaction, user: User) => {
-  if ((!messageReaction && !user) || user.bot) return;
+  if (
+    (!messageReaction && !user) ||
+    user.bot ||
+    messageReaction.message.channelId !== moduleConfig.channelId
+  )
+    return;
   const { message } = await messageReaction.fetch();
   const messageData = message.embeds[0].data;
   const emoji = messageReaction.emoji.name;

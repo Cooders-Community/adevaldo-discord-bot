@@ -1,23 +1,28 @@
 import { Message } from "discord.js";
+import { client } from "src";
 import { ICommand, IObjectCommand } from "src/models/commands";
 
 const command: IObjectCommand = {
-  name: "cleanchannel",
-  description: "Descrição do Comando",
+  name: "clearchannel",
+  description: "limpa o canal; exemplo: !clearchannel 50",
 };
 
 // Run when bot init
-function init(): void {
-  console.log({ command });
-}
+function init(): void {}
 
 // Run when command writed
 async function run(message: Message, content: string): Promise<void> {
-  debugger;
-  message.channel.send("teste");
+  const limit = (+content > 100 ? 100 : +content) || 100;
 
-  console.log("running", command.name);
-  console.log("running", content);
+  const channel = await client.channels.fetch(message.channel.id);
+  if (!channel?.isTextBased()) return;
+
+  const totalMessages = await channel.messages.fetch({ limit });
+  if (!totalMessages.size) return;
+
+  totalMessages.forEach(async (message) => {
+    await message.delete();
+  });
 }
 
 // Run when this.run be success

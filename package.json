@@ -4,9 +4,8 @@
   "main": "./dist/server/index.js",
   "license": "MIT",
   "scripts": {
-    "build": "tsc && tsc-alias  && npm run posbuild",
-    "posbuild": "cp package.json ./dist/package.json && cp .env ./dist/.env",
-    "start": "cd ./dist && npm install && node index.js",
+    "build": "tsc && tsc-alias",
+    "start": "node ./dist/src/index.js",
     "dev": "ts-node-dev -r tsconfig-paths/register --ignore-watch node_modules --respawn --transpile-only './src/index.ts'",
     "dev:debug": "ts-node-dev -r tsconfig-paths/register --inspect=0.0.0.0:9230 --notify --poll --respawn --transpile-only './src/index.ts'"
   },
@@ -28,6 +27,7 @@
     "@types/node-cron": "^3.0.2",
     "@types/uuid": "^8.3.4",
     "ts-node-dev": "^2.0.0",
+    "tsc-alias": "^1.7.0",
     "tsconfig-paths": "^4.0.0",
     "typescript": "^4.7.4"
   }

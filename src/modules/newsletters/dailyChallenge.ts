@@ -1,13 +1,15 @@
-import { format } from "date-fns";
 import { EmbedBuilder } from "discord.js";
 import { convert } from "html-to-text";
 import { client } from "src";
 import newsLetterKiller, { IFeed } from "src/utils/newsLetterKiller";
 
+//https://kill-the-newsletter.com/feeds/smm1b9eq2hjp55jg.xml
+//smm1b9eq2hjp55jg@kill-the-newsletter.com
+
 export const moduleConfig = {
   channelId: "966732065565442068",
-  urlMailBox: "https://kill-the-newsletter.com/feeds/1h7t9db17vnyz8zd.xml",
-  cronSchedule: "0 0 12 * * *",
+  urlMailBox: "https://kill-the-newsletter.com/feeds/smm1b9eq2hjp55jg.xml",
+  cronSchedule: "0 0 13 * * 1-5",
   title: "Daily Challenge",
   source: "https://www.dailycodingproblem.com/",
 };
@@ -44,13 +46,8 @@ export default async () => {
 
     if (channels?.isTextBased()) {
       const news = await requesNews();
-
+      console.log({ news });
       if (news?.content) {
-        const currentDate = format(
-          new Date(news?.timestamp),
-          "dd 'de' MMMM 'de' yyyy"
-        );
-
         const str = formatBody(news?.content);
 
         //NOTE: Limiting Text to Challenge

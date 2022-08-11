@@ -4,7 +4,7 @@
   "main": "./dist/server/index.js",
   "license": "MIT",
   "scripts": {
-    "build": "tsc && tsc-alias",
+    "build": "rm -rf dist; tsc && tsc-alias",
     "zip": "cp ./package.json ./dist/package.json; cp .env ./dist/.env; zip -r dist.zip ./dist",
     "start": "node ./dist/src/index.js",
     "dev": "ts-node-dev -r tsconfig-paths/register --ignore-watch node_modules --respawn --transpile-only './src/index.ts'",

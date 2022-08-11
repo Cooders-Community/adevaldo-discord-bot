@@ -9,7 +9,7 @@ import newsLetterKiller, { IFeed } from "src/utils/newsLetterKiller";
 export const moduleConfig = {
   channelId: "962076795560153088",
   urlMailBox: "https://kill-the-newsletter.com/feeds/g87arb5d6rqdt578.xml",
-  cronSchedule: "0 0 13 * * 1-5",
+  cronSchedule: "0 0 12 * * 1-5",
   title: "Tech News",
   source: "https://filipedeschamps.com.br/newsletter",
 };

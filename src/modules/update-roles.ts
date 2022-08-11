@@ -30,6 +30,8 @@ export default async (messageReaction: MessageReaction, user: User) => {
       member.user.id.includes(user.id)
     )?.size;
 
-    hasRole ? asMember?.roles.remove(role.id) : asMember.roles.add(role.id);
+    hasRole
+      ? await asMember.roles.remove(role.id)
+      : await asMember.roles.add(role.id);
   }
 };

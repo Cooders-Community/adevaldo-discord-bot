@@ -1,11 +1,13 @@
 {
   "name": "adevaldo-bot",
   "version": "1.0.0",
-  "main": "./dist/server/index.js",
+  "main": "./dist/src/index.js",
   "license": "MIT",
   "scripts": {
     "build": "rm -rf dist; tsc && tsc-alias",
-    "zip": "cp ./package.json ./dist/package.json; cp .env ./dist/.env; zip -r dist.zip ./dist",
+    "cp-scripts": "cp ./scripts/install.bat install.bat; cp ./scripts/start.bat start.bat",
+    "rm-scripts": "rm start.bat install.bat",
+    "zip": "rm -rf dist.zip; npm run cp-scripts; zip -r dist.zip ./dist package.json .env .env.exemple install.bat start.bat; npm run rm-scripts",
     "start": "node ./dist/src/index.js",
     "dev": "ts-node-dev -r tsconfig-paths/register --ignore-watch node_modules --respawn --transpile-only './src/index.ts'",
     "dev:debug": "ts-node-dev -r tsconfig-paths/register --inspect=0.0.0.0:9230 --notify --poll --respawn --transpile-only './src/index.ts'"

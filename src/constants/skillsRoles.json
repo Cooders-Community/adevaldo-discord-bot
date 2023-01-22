@@ -4,25 +4,19 @@
       "type": "member",
       "tag": "Senior",
       "emoji": "0️⃣",
-      "id": "962066426682818560"
+      "id": "1066792946923471028"
     },
     {
       "type": "member",
       "tag": "Pleno",
       "emoji": "1️⃣",
-      "id": "962067406325428304"
+      "id": "1066793001575268433"
     },
     {
       "type": "member",
       "tag": "Junior",
       "emoji": "2️⃣",
-      "id": "962065484923142224"
-    },
-    {
-      "type": "member",
-      "tag": "Trainee",
-      "emoji": "3️⃣",
-      "id": "962070577508659250"
+      "id": "1066793039563071599"
     }
   ],
   "Languages": [
@@ -36,19 +30,19 @@
       "type": "member",
       "tag": "Python",
       "emoji": "1️⃣",
-      "id": "962074488894292008"
+      "id": "1066792060318912572"
     },
     {
       "type": "member",
       "tag": "Java",
       "emoji": "2️⃣",
-      "id": "964645289963163719"
+      "id": "1066792255861575690"
     },
     {
       "type": "member",
       "tag": "JavaScript",
       "emoji": "3️⃣",
-      "id": "962058110384619540"
+      "id": "1066791980589383822"
     }
   ],
   "Especiality": [
@@ -56,19 +50,19 @@
       "type": "member",
       "tag": "DataScience",
       "emoji": "0️⃣",
-      "id": "962074749532524604"
+      "id": "1066792499449966603"
     },
     {
       "type": "member",
-      "tag": "Front-END",
+      "tag": "FrontEnd",
       "emoji": "1️⃣",
-      "id": "962087008619073566"
+      "id": "1066792701514764378"
     },
     {
       "type": "member",
-      "tag": "Back-END",
+      "tag": "BackEnd",
       "emoji": "2️⃣",
-      "id": "962087458571432026"
+      "id": "1066792770792075406"
     }
   ],
   "Frameworks": [

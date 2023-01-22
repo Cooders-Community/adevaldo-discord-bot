@@ -23,6 +23,8 @@ export const client = new Discord.Client({
     GatewayIntentBits.DirectMessageTyping,
     GatewayIntentBits.MessageContent,
     GatewayIntentBits.GuildScheduledEvents,
+    GatewayIntentBits.AutoModerationConfiguration,
+    GatewayIntentBits.AutoModerationExecution,
   ],
   partials: [
     Partials.User,

@@ -46,7 +46,7 @@ export default async () => {
 
     if (channels?.isTextBased()) {
       const news = await requesNews();
-      console.log({ news });
+      
       if (news?.content) {
         const str = formatBody(news?.content);
 
@@ -78,10 +78,18 @@ export default async () => {
           });
         }
 
-        await channels.send({
+        const message = await channels.send({
           embeds: [embedMessage],
           components,
-        });
+        })
+
+        if(message)
+          await message.startThread({
+            name: `Answares of '${
+              news.title || moduleConfig.title
+            }'`,
+            autoArchiveDuration: 1440,
+          })
 
         console.warn("[#LOG]", `Sended newsLetter ${moduleConfig.title}}`);
       } else {

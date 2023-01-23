@@ -3,12 +3,9 @@ import { convert } from "html-to-text";
 import { client } from "src/index";
 import newsLetterKiller, { IFeed } from "src/utils/newsLetterKiller";
 
-//https://kill-the-newsletter.com/feeds/g87arb5d6rqdt578.xml
-//g87arb5d6rqdt578@kill-the-newsletter.com
-
 export const moduleConfig = {
   channelId: "962076795560153088",
-  urlMailBox: "https://kill-the-newsletter.com/feeds/g87arb5d6rqdt578.xml",
+  urlMailBox: "https://kill-the-newsletter.com/feeds/uhon854y3v3m1exd.xml",
   cronSchedule: "0 0 12 * * 1-5",
   title: "Tech News",
   source: "https://filipedeschamps.com.br/newsletter",

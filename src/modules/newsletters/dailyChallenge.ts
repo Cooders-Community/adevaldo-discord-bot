@@ -3,12 +3,9 @@ import { convert } from "html-to-text";
 import { client } from "src";
 import newsLetterKiller, { IFeed } from "src/utils/newsLetterKiller";
 
-//https://kill-the-newsletter.com/feeds/smm1b9eq2hjp55jg.xml
-//smm1b9eq2hjp55jg@kill-the-newsletter.com
-
 export const moduleConfig = {
   channelId: "966732065565442068",
-  urlMailBox: "https://kill-the-newsletter.com/feeds/smm1b9eq2hjp55jg.xml",
+  urlMailBox: "https://kill-the-newsletter.com/feeds/rz6yezbbblvwps6z.xml",
   cronSchedule: "0 0 13 * * 1-5",
   title: "Daily Challenge",
   source: "https://www.dailycodingproblem.com/",
